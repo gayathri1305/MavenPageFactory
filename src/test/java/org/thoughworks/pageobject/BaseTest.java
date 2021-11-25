@@ -11,7 +11,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import org.testng.ITestResult;
 
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import resources.ScreenShot;
 
@@ -24,18 +26,22 @@ public class BaseTest {
 
     ExtentReports extent;
     ExtentTest test;
+    @BeforeClass
+    public  void reportCreation(){
+        //Test report
+        extent =new ExtentReports(System.getProperty("user.dir")+"/reports/index.html",true);
+        extent.addSystemInfo("Test", "Spree Automation");
+        extent.addSystemInfo("Tester", "Gayathri Devi");
+        test = extent.startTest("placingOrder");
+    }
     @BeforeMethod
     public void initializeDriver() throws Exception {
             System.setProperty("webdriver.chrome.driver","Driver/chromedriver");
             driver=new ChromeDriver();
-            //Test report
-            extent =new ExtentReports(System.getProperty("user.dir")+"/reports/index.html",true);
-            extent.addSystemInfo("Test", "Spree Automation");
-            extent.addSystemInfo("Tester", "Gayathri Devi");
-
             driver.get("https://spree-vapasi-prod.herokuapp.com/");
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(3000, TimeUnit.SECONDS);
+
         }
 
     @AfterMethod
@@ -58,9 +64,12 @@ public class BaseTest {
             test.log(LogStatus.PASS,"Test Case Passed is "+result.getName());
         }
 
-        extent.endTest(test);
-        extent.flush();
         driver.close();
 
+    }
+    @AfterClass
+    public void cleanReport(){
+        extent.endTest(test);
+        extent.flush();
     }
  }
