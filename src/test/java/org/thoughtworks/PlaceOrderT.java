@@ -7,7 +7,7 @@ import resources.BaseTest;
 import java.io.IOException;
 
 
-public class PlaceOrderTest extends BaseTest {
+public class PlaceOrderT extends BaseTest {
 
     @Test
     public void placingOrder() throws IOException {

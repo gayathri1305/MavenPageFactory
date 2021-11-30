@@ -18,7 +18,8 @@ public class BaseTest extends  Reports{
 
     @BeforeMethod
     public void initializeDriver(ITestResult result) throws Exception {
-           // test = extent.startTest(result.getMethod().getMethodName());
+        test = extent.createTest(result.getMethod().getMethodName());
+        //test = extent.startTest(result.getMethod().getMethodName());// for extent report
 
             System.setProperty("webdriver.chrome.driver","Driver/chromedriver");
             driver=new ChromeDriver();
@@ -31,7 +32,7 @@ public class BaseTest extends  Reports{
     @AfterMethod
     public void tearDown(ITestResult result) throws IOException {
         reportTest(result, driver);
-        //extent.endTest(test);
+        //logReport(result, driver);
         driver.quit();
     }
 

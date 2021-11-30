@@ -30,10 +30,10 @@ public class Reports {
             }
     }
 
-    @BeforeMethod
+   /* @BeforeMethod
     public void testReportSetup(ITestResult result){
         test = extent.createTest(result.getMethod().getMethodName());
-    }
+    }*/
 
     public void reportTest(ITestResult result, WebDriver driver){
         if (result.getStatus() == ITestResult.FAILURE) {
