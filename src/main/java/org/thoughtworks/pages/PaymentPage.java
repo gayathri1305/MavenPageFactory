@@ -1,4 +1,4 @@
-package org.thoughworks.pageobject.pages;
+package org.thoughtworks.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

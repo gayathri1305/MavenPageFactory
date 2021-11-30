@@ -1,18 +1,16 @@
-package org.thoughworks.pageobject;
+package org.thoughtworks;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
-import org.thoughworks.pageobject.pages.*;
-
+import org.thoughtworks.pages.*;
+import resources.BaseTest;
 import java.io.IOException;
 
-public class Sample extends BaseTest{
 
+public class PlaceOrderTest extends BaseTest {
 
     @Test
-    public void bagPlacingOrder() throws IOException {
-
+    public void placingOrder() throws IOException {
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
@@ -40,27 +38,5 @@ public class Sample extends BaseTest{
         Assert.assertEquals(orderSuccessMessage,"Your order has been processed successfully");
 
     }
-
-    @Test
-    public void checkloginSuccess() throws IOException {
-
-
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
-        CategoryPage categoryPage = new CategoryPage(driver);
-        ProductPage productPage = new ProductPage(driver);
-        CartPage cartPage = new CartPage(driver);
-        AddressPage addressPage = new AddressPage(driver);
-        ShippingMethodPage shippingMethodPage = new ShippingMethodPage(driver);
-        PaymentPage paymentPage = new PaymentPage(driver);
-        OrderCompletionPage orderCompletionPage = new OrderCompletionPage(driver);
-
-        loginPage.login("test12@test.in", "123456");
-        String loginSuccessMessage = homePage.verifyLoginSuccess();
-        Assert.assertEquals(loginSuccessMessage, "Logged in successfully finished");
-
-
-    }
-
 
 }
